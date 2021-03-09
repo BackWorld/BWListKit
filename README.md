@@ -12,7 +12,7 @@
 
 # 核心类
 ## BWListAdapter
-```
+``` swift
 class BWListAdapter: NSObject {
     weak var tableView: UITableView?
     weak var collectionView: UICollectionView?
@@ -29,7 +29,7 @@ class BWListAdapter: NSObject {
     }
 ```
 > Adapter类中存储了外部用户的tableView和collectionView，动态进行了cell、header、footer的注册，及数据加载
-```
+``` swift
 convenience init(tableView: UITableView? = nil,
                      collectionView: UICollectionView? = nil,
                      scrollDelegate: BWListScrollDelegate? = nil) {
@@ -57,7 +57,7 @@ convenience init(tableView: UITableView? = nil,
 ## BWListAdapter+CollectionView/TableView
 > 该extension中主要实现了UICollection/TableView的代理方法，进行了cell、header、footer的设置，及点击等action方法的实现和设置
 - CollectionView
-```
+``` swift
 extension BWListAdapter: UICollectionViewDataSource {
 func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let sections = data!.sections!
@@ -73,7 +73,7 @@ func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath:
 }
 ```
 - TableView
-```
+``` swift
 extension BWListAdapter: UITableViewDataSource {
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sections = data!.sections!
@@ -90,7 +90,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 ```
 - ScrollView
 > 该extension中实现了列表的滚动代理UIScrollViewDelegate方法
-```
+``` swift
 extension BWListAdapter: UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollDelegate?.bwListScrollViewDidScroll(scrollView)
@@ -112,7 +112,7 @@ extension BWListAdapter: UIScrollViewDelegate{
 
 # 示例
 ## UITableView
-```
+``` swift
 @IBOutlet weak var tableView: UITableView!
     private lazy var listAdapter = BWListAdapter(tableView: tableView)
     
@@ -160,7 +160,7 @@ private func reloadData() {
     }
 ```
 - Cell用法`需实现BWListItemView协议`
-```
+``` swift
 class STRefundDetailDoingCell: UITableViewCell, BWListItemView {
     
     @IBOutlet var dots: [UIView]!
@@ -185,6 +185,9 @@ class STRefundDetailDoingCell: UITableViewCell, BWListItemView {
 }
 ```
 ## Requirements
+- Swift 5.0
+- Xcode 12.4
+- iOS 9.0
 
 ## Installation
 
@@ -195,9 +198,8 @@ it, simply add the following line to your Podfile:
 pod 'BWListKit'
 ```
 
-## Author
-
-朱旭宏, 1906457616@qq.com
+## 简书
+https://www.jianshu.com/p/77d4e5402e3a
 
 ## License
 
