@@ -1,0 +1,6 @@
+framework module Pods_BWListKit_Tests {
+  umbrella header "Pods-BWListKit_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
