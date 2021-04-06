@@ -9,8 +9,9 @@
 import UIKit
 
 open class BWListData {
-    var registers: [BWListRegister]?
-    var sections: [BWListSection]?
+    public var registers: [BWListRegister]?
+    
+    public var sections: [BWListSection]?
     
     public init(registers: [BWListRegister]? = nil, sections: [BWListSection]? = nil) {
         self.registers = registers
@@ -35,6 +36,8 @@ extension BWListSection {
         if let insets = layout?.insets {
             h += (insets.top + insets.bottom)
         }
+        h += header?.height ?? 0
+        h += footer?.height ?? 0
         if let spacing = layout?.minimumLineSpacing {
             h += CGFloat(count-1)*spacing
         }
@@ -43,16 +46,21 @@ extension BWListSection {
         }
         return h
     }
-    public var itemsWidth: CGFloat {
+    public static func totalWidthOfItems(_ items: [BWListItem], layout: BWListSectionLayout) -> CGFloat {
         var w: CGFloat = 0
-        let count = items?.count ?? 0
-        if let spacing = layout?.minimumInteritemSpacing {
-            w += CGFloat(count-1)*spacing
-        }
-        items?.forEach{
+        let count = items.count
+        let spacing = layout.minimumInteritemSpacing
+        w += CGFloat(count-1)*spacing
+        items.forEach{
             w += $0.width
         }
         return w
+    }
+    public var itemsWidth: CGFloat {
+        guard let items = items, let layout = layout else {
+            return 0
+        }
+        return Self.totalWidthOfItems(items, layout: layout)
     }
 }
 
@@ -63,7 +71,9 @@ extension BWListSection {
         var groupeItems: [[BWListItem]] = []
         var lineItems: [BWListItem] = []
         
+        let insets = section.layout?.insets ?? .zero
         let itemSpacing = section.layout?.minimumInteritemSpacing ?? 0
+        let W = width - insets.left - insets.right
         
         let items = section.items ?? []
         items.enumerated().forEach
@@ -78,8 +88,8 @@ extension BWListSection {
                 }
             }
             
-            if w >= width {
-                if w > width  {
+            if w >= W {
+                if w > W  {
                     groupeItems.append(lineItems.dropLast())
                     lineItems = [item]
                 }
@@ -155,10 +165,10 @@ public struct BWListRegister {
         case footer
     }
     
-    var style: Style!
-    var xib: String?
-    var `class`: AnyClass?
-    var reuseId: String!
+    public var style: Style!
+    public var xib: String?
+    public var `class`: AnyClass?
+    public var reuseId: String!
     
     public init(style: Style! = .cell, xib: String? = nil, class: AnyClass? = nil, reuseId: String? = nil) {
         if xib == nil && `class` == nil {
@@ -172,12 +182,12 @@ public struct BWListRegister {
 }
 
 open class BWListItem {
-    var reuseId: String!
-    var data: Any?
+    public var reuseId: String!
+    public var data: Any?
     /// 实现`BWListItemViewSize`协议可手动计算宽、高
-    var width: CGFloat!
-    var height: CGFloat!
-    var action: BWListItemAction?
+    public var width: CGFloat!
+    public var height: CGFloat!
+    public var action: BWListItemAction?
     
     ///!!! 注意collection view 的cell的width、height不能为0
     public init(reuseId: String? = nil, width: CGFloat = 0, height: CGFloat = 0, data: Any? = nil, action: BWListItemAction? = nil) {
@@ -190,11 +200,11 @@ open class BWListItem {
 }
 
 open class BWListHeaderFooter {
-    var view: UIView?
-    var reuseId: String?
-    var width: CGFloat!
-    var height: CGFloat!
-    var data: Any?
+    public var view: UIView?
+    public var reuseId: String?
+    public var width: CGFloat!
+    public var height: CGFloat!
+    public var data: Any?
     
     /// !!! 注意collectionView的header、footer必须通过注册xib方式实现
     /// 不能指定view
@@ -208,10 +218,10 @@ open class BWListHeaderFooter {
 }
 
 open class BWListSection {
-    var layout: BWListSectionLayout?
-    var header: BWListHeaderFooter?
-    var footer: BWListHeaderFooter?
-    var items: [BWListItem]?
+    public var layout: BWListSectionLayout?
+    public var header: BWListHeaderFooter?
+    public var footer: BWListHeaderFooter?
+    public var items: [BWListItem]?
     
     public init(layout: BWListSectionLayout? = nil, header: BWListHeaderFooter? = nil, footer: BWListHeaderFooter? = nil, items: [BWListItem] = []) {
         self.layout = layout
@@ -222,9 +232,9 @@ open class BWListSection {
 }
 
 public struct BWListSectionLayout {
-    var insets = UIEdgeInsets.zero
-    var minimumInteritemSpacing: CGFloat = 0
-    var minimumLineSpacing: CGFloat = 0
+    public var insets = UIEdgeInsets.zero
+    public var minimumInteritemSpacing: CGFloat = 0
+    public var minimumLineSpacing: CGFloat = 0
     
     public init(insets: UIEdgeInsets = .zero, minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0) {
         self.insets = insets
@@ -236,12 +246,12 @@ public struct BWListSectionLayout {
 public struct BWListItemAction {
     public typealias ItemDidSelectHandler = (_ data: Data)->Void
     public struct Data {
-        var indexPath: IndexPath!
-        var data: Any?
-        var tableView: UITableView!
-        var tableViewCell: UITableViewCell!
-        var collectionView: UICollectionView!
-        var collectionViewCell: UICollectionViewCell!
+        public var indexPath: IndexPath!
+        public var data: Any?
+        public var tableView: UITableView!
+        public var tableViewCell: UITableViewCell!
+        public var collectionView: UICollectionView!
+        public var collectionViewCell: UICollectionViewCell!
     }
     
     var didSelectItem: BWListItemAction.ItemDidSelectHandler?
