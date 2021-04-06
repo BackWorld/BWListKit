@@ -193,5 +193,5 @@ extension BWListScrollDelegate {
 
 //MARK: TODO
 protocol BWListView {
-    public func reload(_ indexPath: IndexPath?, animated: Bool)
+    func reload(_ indexPath: IndexPath?, animated: Bool)
 }
