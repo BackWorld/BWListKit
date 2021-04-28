@@ -125,17 +125,15 @@ extension BWListData {
         
         sections?.forEach
         { section in
-            var w = width
             if let insets = section.layout?.insets {
                 h += (insets.top + insets.bottom)
-                w -= (insets.left + insets.right)
             }
             
             if let header = section.header {
                 h += header.height
             }
             
-            let groups = section.groupedItems(withCollectionViewWidth: w)
+            let groups = section.groupedItems(withCollectionViewWidth: width)
             groups.forEach
             {
                 var maxH: CGFloat = 0
