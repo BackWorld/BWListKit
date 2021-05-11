@@ -47,11 +47,10 @@ extension BWListAdapter: UICollectionViewDataSource {
         let sections = data!.sections!
         let item = sections[indexPath.section].items![indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.reuseId, for: indexPath)
-        
+        cell.layer.zPosition = CGFloat(indexPath.item)
         if let proxy = cell as? BWListItemView {
             proxy.bwListItemViewConfigure(item.data, indexPath: indexPath)
         }
-                
         return cell
     }
 }

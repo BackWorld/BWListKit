@@ -67,11 +67,10 @@ extension BWListAdapter: UITableViewDataSource {
         let sections = data!.sections!
         let item = sections[indexPath.section].items![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseId) ?? tableView.dequeueReusableCell(withIdentifier: item.reuseId, for: indexPath)
-        
+        cell.layer.zPosition = CGFloat(indexPath.row)
         if let proxy = cell as? BWListItemView {
             proxy.bwListItemViewConfigure(item.data, indexPath: indexPath)
         }
-                
         return cell
     }
 }
