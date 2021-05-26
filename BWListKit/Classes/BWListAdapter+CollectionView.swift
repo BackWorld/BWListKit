@@ -51,6 +51,7 @@ extension BWListAdapter: UICollectionViewDataSource {
         if let proxy = cell as? BWListItemView {
             proxy.bwListItemViewConfigure(item.data, indexPath: indexPath)
         }
+        item.cellConfigure?(cell, item.data, indexPath)
         return cell
     }
 }

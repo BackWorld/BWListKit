@@ -180,20 +180,24 @@ public struct BWListRegister {
 }
 
 open class BWListItem {
+    public typealias BWListCellConfigure = (UIView, Any?, IndexPath)->Void
+    
     public var reuseId: String!
     public var data: Any?
     /// 实现`BWListItemViewSize`协议可手动计算宽、高
     public var width: CGFloat!
     public var height: CGFloat!
     public var action: BWListItemAction?
+    public var cellConfigure: BWListCellConfigure?
     
     ///!!! 注意collection view 的cell的width、height不能为0
-    public init(reuseId: String? = nil, width: CGFloat = 0, height: CGFloat = 0, data: Any? = nil, action: BWListItemAction? = nil) {
+    public init(reuseId: String? = nil, width: CGFloat = 0, height: CGFloat = 0, data: Any? = nil, cellConfigure: BWListCellConfigure? = nil, action: BWListItemAction? = nil) {
         self.reuseId = reuseId
         self.width = width
         self.height = height
         self.data = data
         self.action = action
+        self.cellConfigure = cellConfigure
     }
 }
 
