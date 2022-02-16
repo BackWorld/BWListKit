@@ -1,5 +1,5 @@
 PODS:
-  - BWListKit (0.0.2)
+  - BWListKit (0.0.6)
 
 DEPENDENCIES:
   - BWListKit (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BWListKit: 4247820938e99347171bcf068deba945b55adf28
+  BWListKit: 8d1d76051ff68eb84bf2c2f85331b4e628f19b61
 
 PODFILE CHECKSUM: acb1ba528f93624a3cf80a8f2c93c0d5fb391dc1
 
