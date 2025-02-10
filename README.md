@@ -1,10 +1,5 @@
 # BWListKit
 
-[![CI Status](https://img.shields.io/travis/朱旭宏/BWListKit.svg?style=flat)](https://travis-ci.org/朱旭宏/BWListKit)
-[![Version](https://img.shields.io/cocoapods/v/BWListKit.svg?style=flat)](https://cocoapods.org/pods/BWListKit)
-[![License](https://img.shields.io/cocoapods/l/BWListKit.svg?style=flat)](https://cocoapods.org/pods/BWListKit)
-[![Platform](https://img.shields.io/cocoapods/p/BWListKit.svg?style=flat)](https://cocoapods.org/pods/BWListKit)
-
 <img src="https://upload-images.jianshu.io/upload_images/1334681-64a0a1c392f38dcf.png" width="50%">
 
 # 简介
