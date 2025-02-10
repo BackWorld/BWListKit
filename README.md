@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/BWListKit.svg?style=flat)](https://cocoapods.org/pods/BWListKit)
 [![Platform](https://img.shields.io/cocoapods/p/BWListKit.svg?style=flat)](https://cocoapods.org/pods/BWListKit)
 
-![UITableView示例](https://upload-images.jianshu.io/upload_images/1334681-64a0a1c392f38dcf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/300)
+<img src="https://upload-images.jianshu.io/upload_images/1334681-64a0a1c392f38dcf.png" width="50%">
 
 # 简介
 > BWListKit 是基于UITableView/UICollectionView封装了各自的delegate、datasource协议方法，提供了基于数据驱动的列表构建方式，采用Adapter适配器大大减少了代码量，提高了开发效率，提高了封装性和统一性。
